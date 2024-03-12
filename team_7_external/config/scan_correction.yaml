@@ -1,0 +1,13 @@
+scan_correction:
+  ros__parameters:
+    original_lidar_topic: '/scan'
+    topic_name: 'scan_corrected'
+    number_of_ranges: 2 # number of ranges that you want to filter out
+
+    # range upper & lower bound should be defined by your original "/scan" topic
+    ranges_min: [90, 270] # By index, eg: ranges_min[0] -> min of the range 1
+    ranges_max: [180, 359] # By index, eg: ranges_max[1] -> max of the range 2
+
+# won't use here by defalt, 
+# you may copy this file to any directory
+# just make sure you change "sensor_pkg" to {your_dir} in launch file
