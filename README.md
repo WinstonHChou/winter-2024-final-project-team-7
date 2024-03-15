@@ -34,7 +34,7 @@ Rayyan Khalid - MAE Ctrls & Robotics (MC34) - Class of 2025
 <hr>
 
 ## Abstract
-The project's goal is to develop a robotic system capable of autonomously mapping a new enclosed environment, determining a path from a specified starting point to a desired destination while avoiding obstacles in its path. This involves integrating sensors for environmental perception, implementing mapping and localization algorithms, designing path planning and obstacle avoidance strategies, and creating a robust control system for the robot's navigation.
+The project's goal is to develop a robotic system capable of mapping a new enclosed environment, determining a path from a specified starting point to a desired destination while avoiding obstacles in its path. This involves integrating sensors for environmental perception, implementing mapping and localization algorithms, designing path planning and obstacle avoidance strategies, and creating a robust control system for the robot's navigation.
 
 The robot utilizes the ROS2 Navigation 2 stack and integrating LiDAR for SLAM (Simultaneous Localization and Mapping) along with the OAK-D Lite depth point cloud camera for real-time obstacle avoidance.
 
