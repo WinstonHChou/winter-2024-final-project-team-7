@@ -1,0 +1,39 @@
+[3.609s] Invoking command in '/root/ros2_ws/src/obstacle_detection': PYTHONPATH=/root/ros2_ws/src/obstacle_detection/build/obstacle_detection/prefix_override:/root/ros2_ws/src/obstacle_detection/install/obstacle_detection/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base build/obstacle_detection build --build-base /root/ros2_ws/src/obstacle_detection/build/obstacle_detection/build install --record /root/ros2_ws/src/obstacle_detection/build/obstacle_detection/install.log --single-version-externally-managed
+[4.976s] running egg_info
+[4.980s] creating build/obstacle_detection/obstacle_detection.egg-info
+[4.980s] writing build/obstacle_detection/obstacle_detection.egg-info/PKG-INFO
+[4.981s] writing dependency_links to build/obstacle_detection/obstacle_detection.egg-info/dependency_links.txt
+[4.988s] writing entry points to build/obstacle_detection/obstacle_detection.egg-info/entry_points.txt
+[4.988s] writing requirements to build/obstacle_detection/obstacle_detection.egg-info/requires.txt
+[4.988s] writing top-level names to build/obstacle_detection/obstacle_detection.egg-info/top_level.txt
+[4.988s] writing manifest file 'build/obstacle_detection/obstacle_detection.egg-info/SOURCES.txt'
+[4.992s] reading manifest file 'build/obstacle_detection/obstacle_detection.egg-info/SOURCES.txt'
+[5.004s] writing manifest file 'build/obstacle_detection/obstacle_detection.egg-info/SOURCES.txt'
+[5.004s] running build
+[5.004s] running build_py
+[5.004s] creating /root/ros2_ws/src/obstacle_detection/build/obstacle_detection/build
+[5.004s] creating /root/ros2_ws/src/obstacle_detection/build/obstacle_detection/build/lib
+[5.004s] creating /root/ros2_ws/src/obstacle_detection/build/obstacle_detection/build/lib/obstacle_detection
+[5.004s] copying obstacle_detection/__init__.py -> /root/ros2_ws/src/obstacle_detection/build/obstacle_detection/build/lib/obstacle_detection
+[5.004s] copying obstacle_detection/obstacle_detection_node.py -> /root/ros2_ws/src/obstacle_detection/build/obstacle_detection/build/lib/obstacle_detection
+[5.004s] running install
+[5.008s] running install_lib
+[5.012s] creating /root/ros2_ws/src/obstacle_detection/install/obstacle_detection/lib/python3.10/site-packages/obstacle_detection
+[5.012s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[5.012s]   warnings.warn(
+[5.015s] copying /root/ros2_ws/src/obstacle_detection/build/obstacle_detection/build/lib/obstacle_detection/__init__.py -> /root/ros2_ws/src/obstacle_detection/install/obstacle_detection/lib/python3.10/site-packages/obstacle_detection
+[5.016s] copying /root/ros2_ws/src/obstacle_detection/build/obstacle_detection/build/lib/obstacle_detection/obstacle_detection_node.py -> /root/ros2_ws/src/obstacle_detection/install/obstacle_detection/lib/python3.10/site-packages/obstacle_detection
+[5.020s] byte-compiling /root/ros2_ws/src/obstacle_detection/install/obstacle_detection/lib/python3.10/site-packages/obstacle_detection/__init__.py to __init__.cpython-310.pyc
+[5.024s] byte-compiling /root/ros2_ws/src/obstacle_detection/install/obstacle_detection/lib/python3.10/site-packages/obstacle_detection/obstacle_detection_node.py to obstacle_detection_node.cpython-310.pyc
+[5.025s] running install_data
+[5.029s] creating /root/ros2_ws/src/obstacle_detection/install/obstacle_detection/share/ament_index
+[5.032s] creating /root/ros2_ws/src/obstacle_detection/install/obstacle_detection/share/ament_index/resource_index
+[5.032s] creating /root/ros2_ws/src/obstacle_detection/install/obstacle_detection/share/ament_index/resource_index/packages
+[5.032s] copying resource/obstacle_detection -> /root/ros2_ws/src/obstacle_detection/install/obstacle_detection/share/ament_index/resource_index/packages
+[5.036s] copying package.xml -> /root/ros2_ws/src/obstacle_detection/install/obstacle_detection/share/obstacle_detection
+[5.036s] running install_egg_info
+[5.049s] Copying build/obstacle_detection/obstacle_detection.egg-info to /root/ros2_ws/src/obstacle_detection/install/obstacle_detection/lib/python3.10/site-packages/obstacle_detection-0.0.0-py3.10.egg-info
+[5.056s] running install_scripts
+[5.172s] Installing obstacle_detection_node script to /root/ros2_ws/src/obstacle_detection/install/obstacle_detection/lib/obstacle_detection
+[5.172s] writing list of installed files to '/root/ros2_ws/src/obstacle_detection/build/obstacle_detection/install.log'
+[5.284s] Invoked command in '/root/ros2_ws/src/obstacle_detection' returned '0': PYTHONPATH=/root/ros2_ws/src/obstacle_detection/build/obstacle_detection/prefix_override:/root/ros2_ws/src/obstacle_detection/install/obstacle_detection/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base build/obstacle_detection build --build-base /root/ros2_ws/src/obstacle_detection/build/obstacle_detection/build install --record /root/ros2_ws/src/obstacle_detection/build/obstacle_detection/install.log --single-version-externally-managed
