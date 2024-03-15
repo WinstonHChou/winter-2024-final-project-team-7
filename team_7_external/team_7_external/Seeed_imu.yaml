@@ -1,0 +1,137 @@
+####                                     ####
+# Use this file as an example to fill
+# up the information about the IMU
+# you are using.
+# This specific .yaml includes example
+# values needed to config SparkFun Razor
+####                                     ####
+
+#### Serial Configuraton ####
+Serial:
+  device: "SeeedXIAO"
+  port: "/dev/ttyACM0"
+  boundrate: 57600
+  boot_time: 2
+
+#### Units Configuraton ####
+Units:
+  orin_scale: 1
+  acel_scale: 1
+  gyro_scale: 1
+
+#### Calibration Configuraton ####
+Calib:
+  SparkFunRazor:
+    Val: 
+      ### accelerometer
+      accel_x_min: -250.0
+      accel_x_max:  250.0
+      accel_y_min: -250.0
+      accel_y_max:  250.0
+      accel_z_min: -250.0
+      accel_z_max:  250.0
+
+      ### magnetometer
+      magn_x_min: -600.0
+      magn_x_max:  600.0
+      magn_y_min: -600.0
+      magn_y_max:  600.0
+      magn_z_min: -600.0
+      magn_z_max:  600.0
+
+      ### gyroscope
+      gyro_average_offset_x: 0.0
+      gyro_average_offset_y: 0.0
+      gyro_average_offset_z: 0.0
+
+    Cmd:
+    ### accelerometer
+      accel_x_min: '#caxm'
+      accel_x_max: '#caxM'
+      accel_y_min: '#caym'
+      accel_y_max: '#cayM'
+      accel_z_min: '#cazm'
+      accel_z_max: '#cazM'
+
+      ### magnetometer
+      magn_x_min: '#cmxm'
+      magn_x_max: '#cmxM'
+      magn_y_min: '#cmym'
+      magn_y_max: '#cmyM'
+      magn_z_min: '#cmzm'
+      magn_z_max: '#cmzM'
+
+      ### gyroscope
+      gyro_average_offset_x: '#cgx'
+      gyro_average_offset_y: '#cgy'
+      gyro_average_offset_z: '#cgz'
+  
+  SeeedXIAO:
+    Val:
+      ### orin constant drift
+      orin_drift_x:  0.00778
+      orin_drift_y:  -0.01
+      orin_drift_z:  0.01
+
+      ### orin value scaling
+      orin_scale_x:  1
+      orin_scale_y:  1
+      orin_scale_z:  1 
+
+      ### acceleration constant drift
+      acel_drift_x:  0
+      acel_drift_y:  -0.00111
+      acel_drift_z:  0
+
+      ### acceleration value scaling
+      acel_scale_x:  1
+      acel_scale_y:  1
+      acel_scale_z:  1
+
+      ### gyro constant drift
+      gyro_drift_x:  0.041
+      gyro_drift_y:  0.04667
+      gyro_drift_z:  -0.00778
+
+      ### gyro value scaling
+      gyro_scale_x:  1
+      gyro_scale_y:  1
+      gyro_scale_z:  1  
+
+      ### serial post rate
+      updates_rate:  20
+
+    Cmd:
+      ### orin constant drift
+      orin_drift_x: '#codx'
+      orin_drift_y: '#cody'
+      orin_drift_z: '#codz'
+
+      ### orin value scaling
+      orin_scale_x: '#cosx'
+      orin_scale_y: '#cosy'
+      orin_scale_z: '#cosz' 
+
+      ### acceleration constant drift
+      acel_drift_x:  '#cadx'
+      acel_drift_y:  '#cady'
+      acel_drift_z:  '#cadz'
+
+      ### acceleration value scaling
+      acel_scale_x:  '#casx'
+      acel_scale_y:  '#casy'
+      acel_scale_z:  '#casz'
+
+      ### gyro constant drift
+      gyro_drift_x:  '#cgdx'
+      gyro_drift_y:  '#cgdy'
+      gyro_drift_z:  '#cgdz'
+
+      ### gyro value scaling
+      gyro_scale_x:  '#cgsx'
+      gyro_scale_y:  '#cgsy'
+      gyro_scale_z:  '#cgsz'
+
+      ### serial post rate
+      updates_rate: '#cu'
+      

@@ -2,7 +2,7 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>team_7_external</name>
-  <version>0.0.0</version>
+  <version>0.1.0</version>
   <description>TODO: Package description</description>
   <maintainer email="w3chou@ucsd.edu">root</maintainer>
   <license>TODO: License declaration</license>
@@ -12,6 +12,9 @@
   <depend>tf2_ros_py</depend>
   <depend>python3-numpy</depend>
   <depend>sensor_msgs</depend>
+  <depend>diagnostic_msgs</depend>
+  <depend>rcl_interfaces</depend>
+  <depend>tf_transformations</depend>
   <depend>std_srvs</depend>
   <depend>udev</depend>
 
