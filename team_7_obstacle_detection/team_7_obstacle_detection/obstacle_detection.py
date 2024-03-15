@@ -18,14 +18,16 @@ import sys
 from geometry_msgs.msg import TransformStamped
 from sensor_msgs.msg import LaserScan
 from sensor_msgs.msg import PointCloud2
-import sensor_msgs_py.point_cloud2 as pc2
+from sensor_msgs_py import point_cloud2 as pc2
 
-from std_msgs.msg import Float32MultiArray
+from std_msgs.msg import Float32MultiArray, MultiArrayDimension, MultiArrayLayout
 
 import numpy as np
 
 import rclpy
 from rclpy.node import Node
+from rclpy.callback_groups import MutuallyExclusiveCallbackGroup
+from rclpy.executors import MultiThreadedExecutor
 from rclpy.qos import ReliabilityPolicy, QoSProfile
 
 class ObstacleDetector(Node):
@@ -65,7 +67,7 @@ class ObstacleDetector(Node):
                                                        QoSProfile(depth=10, 
                                                                   reliability=ReliabilityPolicy.BEST_EFFORT)
                                                        )
-        self.subscription  # prevent unused variable warning
+        self.pcl_subscriber  # prevent unused variable warning
 
         #### Initialize Variables
         self.obstacle_found = False
@@ -92,7 +94,8 @@ class ObstacleDetector(Node):
     def pcl_callback(self, msg):
         # Process each point in the pointcloud
         self.obstacle_found = False
-        for point in pc2.read_points(msg, skip_nans=True):
+        #pcl_as_numpy_array = np.array(list(msg.data))
+        for point in pc2.read_points(msg):
             x, y, z = point[:3]  # Get the XYZ coordinates of the point
             if z < 2:  # Check if the point is within 2 meters in front of the camera
                 self.obstacle_found = True
