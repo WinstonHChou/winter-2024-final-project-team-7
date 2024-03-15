@@ -14,6 +14,7 @@ setup(
         ('share/' + package_name, ['package.xml']),
         (os.path.join('share', package_name, 'launch'), glob('launch/*.launch.py')),
         (os.path.join('share', package_name, 'config'), glob('config/*.yaml')),
+        # (os.path.join('lib/python3.8/site-packages', package_name, 'razorIMU_9dof'), glob(package_name + '/razorIMU_9dof/*.py')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -25,7 +26,7 @@ setup(
     entry_points={
         'console_scripts': [
             'scan_corrected_node = team_7_external.scan_correction:main',
-            'Seeed_imu_node = team_7_external.Seed_imu:main',
+            'Seeed_imu_node = team_7_external.Seeed_imu:main',
         ],
     },
 )

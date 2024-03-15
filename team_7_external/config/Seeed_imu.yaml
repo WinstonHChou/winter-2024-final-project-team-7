@@ -74,9 +74,9 @@ Calib:
       orin_drift_z:  0.01
 
       ### orin value scaling
-      orin_scale_x:  1
-      orin_scale_y:  1
-      orin_scale_z:  1 
+      orin_scale_x:  1.25
+      orin_scale_y:  1.42857
+      orin_scale_z:  1.324 
 
       ### acceleration constant drift
       acel_drift_x:  0
@@ -84,9 +84,9 @@ Calib:
       acel_drift_z:  0
 
       ### acceleration value scaling
-      acel_scale_x:  1
-      acel_scale_y:  1
-      acel_scale_z:  1
+      acel_scale_x:  1.25
+      acel_scale_y:  1.42857
+      acel_scale_z:  1.324
 
       ### gyro constant drift
       gyro_drift_x:  0.041
@@ -94,9 +94,9 @@ Calib:
       gyro_drift_z:  -0.00778
 
       ### gyro value scaling
-      gyro_scale_x:  1
-      gyro_scale_y:  1
-      gyro_scale_z:  1  
+      gyro_scale_x:  1.25
+      gyro_scale_y:  1.42857
+      gyro_scale_z:  1.324
 
       ### serial post rate
       updates_rate:  20

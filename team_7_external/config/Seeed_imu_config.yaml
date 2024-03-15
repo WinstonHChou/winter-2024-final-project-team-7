@@ -1,0 +1,6 @@
+seeed_imu:
+  ros__parameters:
+    imu_Debug_output: true
+
+# you may copy this file to any directory
+# just make sure you change "sensor_pkg" to {your_dir} in launch file

@@ -10,22 +10,22 @@ from launch_ros.actions import PushRosNamespace
 
 
 def generate_launch_description():
-    # sensor_pkg = 'ucsd_robocar_nav2_pkg'
+    sensor_pkg = 'ucsd_robocar_nav2_pkg'
     some_package = 'team_7_external'
     some_node = 'Seeed_imu_node'    
-    # some_config = 'Seeed_imu.yaml'
+    some_config = 'Seeed_imu_config.yaml'
 
     ld = LaunchDescription()
-    # config = os.path.join(
-    #     get_package_share_directory(sensor_pkg), # change to "some_package" for local testing usage
-    #     'config',
-    #     some_config)
+    config = os.path.join(
+        get_package_share_directory(some_package), # change to "some_package" for local testing usage
+        'config',
+        some_config)
         
     sensor_node=Node(
         executable=some_node,
         package=some_package,
         output='screen',
-        # parameters=[config],
+        parameters=[config],
     )
 
     # tf2 - base_link to base_imu_link
