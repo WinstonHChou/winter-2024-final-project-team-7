@@ -51,4 +51,10 @@ qtcreator-*
 CATKIN_IGNORE
 
 #images folder ignore
-/images/
+images/
+*.mov
+*.MOV
+*.mp4
+*.jpg
+*.png
+*.webp
