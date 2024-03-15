@@ -1,0 +1,3 @@
+[submodule "razorIMU_9dof"]
+	path = razorIMU_9dof
+	url = https://github.com/NikitaB04/razorIMU_9dof.git

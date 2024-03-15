@@ -68,7 +68,20 @@ class ObstacleDetector(Node):
         self.subscription  # prevent unused variable warning
 
         #### Initialize Variables
-        self.error = Float32MultiArray()
+        self.obstacle_found = False
+        self.error_msg = Float32MultiArray() # [error_distance_to_wall, heading_error_with_wall]
+        self.error_msg.layout.dim.append(MultiArrayDimension())
+        self.error_msg.layout.dim.append(MultiArrayDimension())
+        self.error_msg.layout.dim.append(MultiArrayDimension())
+        # self.error_msg.layout.dim.append(MultiArrayDimension())
+        self.error_msg.layout.dim[0].label = "lateral_error"
+        self.error_msg.layout.dim[1].label = "longitdudinal_error"
+        self.error_msg.layout.dim[2].label = "heading_error"
+        # self.error_msg.layout.dim[3].label = "future_curvature"
+        self.error_msg.layout.dim[0].size = 1
+        self.error_msg.layout.dim[1].size = 1
+        self.error_msg.layout.dim[2].size = 1
+        # self.error_msg.layout.dim[3].size = 1
 
         # define the timer period for 0.02 seconds
         self.timer_period = 0.02
@@ -78,14 +91,25 @@ class ObstacleDetector(Node):
 
     def pcl_callback(self, msg):
         # Process each point in the pointcloud
+        self.obstacle_found = False
         for point in pc2.read_points(msg, skip_nans=True):
             x, y, z = point[:3]  # Get the XYZ coordinates of the point
-            if z < 2.0:  # Check if the point is within 2 meters in front of the camera
+            if z < 2:  # Check if the point is within 2 meters in front of the camera
+                self.obstacle_found = True
                 self.get_logger().info(f'Obstacle detected at {x:.2f}, {y:.2f}, {z:.2f} meters')
                 break  # Exit after first obstacle detection to reduce console spam
 
     def error_publish(self):
-        self.error_pubisher.publish(self.error)
+        lateral_error = 0
+        longitdudinal_error = 0
+        
+        if self.obstacle_found:
+            heading_error = 1
+        else:
+            heading_error = 0
+
+        self.error_msg.data = [float(lateral_error), float(longitdudinal_error), float(heading_error)]
+        self.error_pubisher.publish(self.error_msg)
 
 def main(args=None):
     logger = rclpy.logging.get_logger('logger')
