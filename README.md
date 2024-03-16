@@ -88,8 +88,6 @@ The robot utilizes the ROS2 Navigation 2 stack and integrating LiDAR for SLAM (S
 [<img src="images\foxglove_pcl.webp" width="300">](https://youtu.be/iBNiwRAd4vU?si=_p8UwEmmzGuZwT1X)
 
 
-### **Early Progress Clips**
-
 #### Odom Frame Demo
 
 [<img src="images\odom.webp" width="300">](https://youtu.be/PYMze0eOyS8?si=Nz3BIUGNAnoSLkpe)
