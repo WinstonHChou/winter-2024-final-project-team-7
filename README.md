@@ -4,7 +4,7 @@
 #### <div align="center"> Team 7 Winter 2024 </div>
 
 <div align="center">
-    <img src="images\ucsdrobocar-148-07.webp" width="500" height="400">
+    <img src="images\ucsdrobocar-148-07.webp" width="800" height="600">
 </div>
 
 ## Table of Contents
@@ -15,12 +15,12 @@
     <li><a href="#accomplishments">Accomplishments</a></li>
     <li><a href="#challenges">Challenges</a></li>
     <li><a href="#final-project-videos">Final Project Videos</a></li>
+    <li><a href="#hardware">Hardware</a></li>
     <li><a href="#software">Software</a></li>
         <ul>
-        <li><a href="#obstacle-avoidance">Obstacle Avoidance</a></li>
-        <li><a href="#pedestrian-detection">Pedestrian Detection</a></li>
-      </ul>
-    <li><a href="#hardware">Hardware</a></li>
+            <li><a href="#obstacle-avoidance">Obstacle Avoidance</a></li>
+            <li><a href="#pedestrian-detection">Pedestrian Detection</a></li>
+        </ul>
     <li><a href="#gantt-chart">Gantt Chart</a></li>
     <li><a href="#course-deliverables">Course Deliverables</a></li>
     <li><a href="#project-reproduction">Project Reproduction</a></li>
@@ -105,6 +105,56 @@ Early Pedestrian Detection
 
 <hr>
 
+## Hardware 
+
+* __3D Printing:__ Camera Stand, Jetson Nano Case
+* __Laser Cutting:__ Base plate to mount electronics and other components.
+
+__Parts List__
+
+* Traxxas Chassis with steering servo and sensored brushless DC motor
+* Jetson Nano
+* WiFi adapter
+* 64 GB Micro SD Card
+* Adapter/reader for Micro SD Card
+* Logitech F710 controller
+* OAK-D Lite Camera
+* LD19 Lidar (LD06 Lidar)
+* VESC
+* Anti-spark switch with power switch
+* DC-DC Converter
+* 4-cell LiPo battery
+* Battery voltage checker/alarm
+* DC Barrel Connector
+* XT60, XT30, MR60 connectors
+
+*Additional Parts used for testing/debugging*
+
+* Car stand
+* USB-C to USB-A cable
+* Micro USB to USB cable
+* 5V, 4A power supply for Jetson Nano
+
+__Baseplate__
+
+<img src="images\BasePlate_1.webp" height="350"> <img src="images\BasePlate_2.webp" height="350">
+
+__Camera Stand__
+
+Camera Stand components were designed in a way that it's an adjustable angle and height This design feature offers versatility and adaptability, ensuring optimal positioning of the camera to capture desired perspectives and accommodate various environments or setups.
+
+<img src="images\Camera_Stand_1.webp" height="160"> <img src="images\Camera_Stand_2.webp" height="160">
+<img src="images\Camera_Stand_3.webp" height="350">
+
+__Circuit Diagram__
+
+Our team made use of a select range of electronic components, primarily focusing on the OAK-D Lite camera, Jetson NANO, a GNSS board / GPS, and an additional Seeed Studio XIAO nRF52840 Sense (for IMU usage).
+Our circuit assembly process was guided by a circuit diagram provided by our class TAs.
+
+<img src="images\circuitDiagram.PNG" height="300">
+
+<hr>
+
 ## Software
 
 ### Overall Architecture
@@ -123,66 +173,6 @@ We used the LD06 Lidar to implement obstacle avoidance within ROS2. The program 
 
 ### Pedestrian Detection
 We used the DepthAI package to implement pedestrian detection within ROS2. We took advantage of the Tiny YOLO neural network setup found within the examples. We filter through the detections to check strictly for a "person" with adjustable confidence levels. We found that a 60% confidence level worked pretty well for our project's use cases. Surprisingly, we found better results with real humans walking in front of the robot (it would detect their feet and be able to classify them as "person" objects). We were also able to successfully scan various printout images of people with high accuracy and success. The programming logic for pedestrian detection is very simple in that if a "person" has been detected in the image passed through by the camera, the VESC throttles are set to 0, stopping the car, until the person has moved out of the field of view.
-<hr>
-
-## Hardware 
-
-* __3D Printing:__ Camera Mount, Jetson Nano Case
-* __Laser Cutting:__ Base plate to mount electronics and other components.
-
-__Parts List__
-
-* Traxxas Chassis with steering servo and sensored brushless DC motor
-* Jetson Nano
-* WiFi adapter
-* 64 GB Micro SD Card
-* Adapter/reader for Micro SD Card
-* Logitech F710 controller
-* OAK-D Lite Camera
-* LD06 Lidar
-* VESC
-* Anti-spark switch with power switch
-* DC-DC Converter
-* 4-cell LiPo battery
-* Battery voltage checker/alarm
-* DC Barrel Connector
-* XT60, XT30, MR60 connectors
-
-*Additional Parts used for testing/debugging*
-
-* Car stand
-* USB-C to USB-A cable
-* Micro USB to USB cable
-* 5V, 4A power supply for Jetson Nano
-
-__Baseplate__
-
-<img src="images\baseplate.PNG" height="300">
-<!--![image](https://github.com/UCSD-ECEMAE-148/spring-2023-final-project-team-5/assets/110933991/e6602891-79b6-4dc2-9041-1f3944957bf0)-->
-
-__Jetson Nano Case__
-
-<img src="images\jetsonCase.PNG" height="300">
-<!--![image](https://github.com/UCSD-ECEMAE-148/spring-2023-final-project-team-5/assets/110933991/63896700-373c-46b1-9988-9b9c2bb5c747)
-![image](https://github.com/UCSD-ECEMAE-148/spring-2023-final-project-team-5/assets/110933991/9ef2de13-563a-4913-a153-63b0cf8d14c7)
-![image](https://github.com/UCSD-ECEMAE-148/spring-2023-final-project-team-5/assets/110933991/17c07153-c1a1-49b8-80e3-6d8203097c39)-->
-
-Credit: https://www.thingiverse.com/thing:3778338
-
-__Camera Mount__
-
-<img src="images\cameraMount.PNG" height="300">
-
-Credit: https://www.thingiverse.com/thing:5336496
-<!--![image](https://github.com/UCSD-ECEMAE-148/spring-2023-final-project-team-5/assets/110933991/5c09cbd4-6bd3-4c49-9e59-29f13cd2f1fd)
-![image](https://github.com/UCSD-ECEMAE-148/spring-2023-final-project-team-5/assets/110933991/dfee34c8-abdf-4bed-a303-4a3d9dcf1e5c)
-![image](https://github.com/UCSD-ECEMAE-148/spring-2023-final-project-team-5/assets/110933991/979798ce-7823-4885-bd02-62e6fe5d953e)
-![image](https://github.com/UCSD-ECEMAE-148/spring-2023-final-project-team-5/assets/110933991/fd08ccc0-b16f-4b23-b3a5-b96e650e1717)-->
-
-__Circuit Diagram__
-
-<img src="images\circuitDiagram.PNG" height="300">
-
 <hr>
 
 ## Gantt Chart
