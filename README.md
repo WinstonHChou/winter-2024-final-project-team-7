@@ -347,8 +347,8 @@ ros2 launch team_7_external Seeed_imu.launch.py
       <li>Install Depthai and related packages,<br><code>sudo apt install ros-foxy-depthai* ros-foxy-sensor-msgs-py</code></li>
       <li>If you're using an OAK-D Lite,
           <ul>
-              <li>adjust <code>camera.yaml</code>,<br><code>nano /opt/ros/foxy/share/depthai_ros_driver/config/camera.yaml</code><br>Disable imu and ir<br><img src="https://github.com/WinstonHChou/winter-2024-final-project-team-7/assets/68310078/aff6c5af-6798-4a3a-9db8-c4d04e6da298"></li>
-              <li>adjust <code>pcl.yaml</code>,<br><code>nano /opt/ros/foxy/share/depthai_ros_driver/config/pcl.yaml</code><br>Disable imu and ir, and comment out "oak:"<br><img src="https://github.com/WinstonHChou/winter-2024-final-project-team-7/assets/68310078/d4ec90b2-f20f-46f5-8474-c70a546a5cb5"></li>
+              <li>adjust <code>camera.yaml</code>,<br><code>nano /opt/ros/foxy/share/depthai_ros_driver/config/camera.yaml</code><br>Disable imu and ir<br><br><img src="https://github.com/WinstonHChou/winter-2024-final-project-team-7/assets/68310078/aff6c5af-6798-4a3a-9db8-c4d04e6da298" width="300"></li>
+              <li>adjust <code>pcl.yaml</code>,<br><code>nano /opt/ros/foxy/share/depthai_ros_driver/config/pcl.yaml</code><br>Disable imu and ir, and comment out "oak:"<br><br><img src="https://github.com/WinstonHChou/winter-2024-final-project-team-7/assets/68310078/d4ec90b2-f20f-46f5-8474-c70a546a5cb5" height="200"></li>
           </ul>
       </li>                  
       <li>Open an additional terminal, <br><code>ros2 launch depthai_ros_driver pointcloud.launch.py</code> to publish <code>/oak/points</code> ros 2 topic.</li>
@@ -361,7 +361,7 @@ ros2 launch team_7_external Seeed_imu.launch.py
   </li>
 </ol>
 
-That's it! Most of setting are above. If you need any assistance on how to utilze this repo, you may create new issue on this GitHub repo, or contact w3chou@ucsd.edu if needed.
+That's it! Most of settings are above. If you need any assistance on how to utilize this repo, you may create new issue on this GitHub repo, or contact w3chou@ucsd.edu if needed.
 
 <hr>
 
