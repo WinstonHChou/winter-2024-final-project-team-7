@@ -197,8 +197,51 @@ Team 7's the weekly project Status Update and Final Presentation:
 If you are interested in reproducing our project, here are a few steps to get you started with our repo:
 
 <ol>
+  <li>Follow instuctions on <a href="https://docs.google.com/document/d/1YS5YGbo8evIo9Mlb0J-w2r3bZfju37Zl4UmdaN2CD2A/">UCSD Robocar Framework Guidebook</a>, <br> pull <code>devel</code> image on your JTN: <code>docker pull djnighti/ucsd_robocar:devel</code></li>
+  <li>
+      <code>sudo apt update && sudo apt upgrade</code><br>
+      (make sure you upgrade the packages, or else it won't work; maybe helpful if you run into some error <url>https://askubuntu.com/questions/1433368/how-to-solve-gpg-error-with-packages-microsoft-com-pubkey</url>)<br>
+      check if <code>slam_toolbox</code> is installed and launchable:<br>
+<pre>
+sudo apt install ros-foxy-slam-toolbox
+source_ros2
+ros2 launch slam_toolbox online_async_launch.py
+</pre>
+      Output should be similar to:
+<pre>
+[INFO] [launch]: All log files can be found below /root/.ros/log/2024-03-16-03-57-52-728234-ucsdrobocar-148-07-14151
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [async_slam_toolbox_node-1]: process started with pid [14173]
+[async_slam_toolbox_node-1] 1710561474.218342 [7] async_slam: using network interface wlan0 (udp/192.168.16.252) selected arbitrarily from: wlan0, docker0
+[async_slam_toolbox_node-1] [INFO] [1710561474.244055467] [slam_toolbox]: Node using stack size 40000000
+[async_slam_toolbox_node-1] 1710561474.256172 [7] async_slam: using network interface wlan0 (udp/192.168.16.252) selected arbitrarily from: wlan0, docker0
+[async_slam_toolbox_node-1] [INFO] [1710561474.517037334] [slam_toolbox]: Using solver plugin solver_plugins::CeresSolver
+[async_slam_toolbox_node-1] [INFO] [1710561474.517655574] [slam_toolbox]: CeresSolver: Using SCHUR_JACOBI preconditioner.
+</pre>
+  </li>
+  <li>
+      Since we upgrade all existing packges, we need to rebuild VESC pkg under <code>/home/projects/sensor2_ws/src/vesc/src/vesc</code><br>
+<pre>
+cd /home/projects/sensor2_ws/src/vesc/src/vesc
+git pull
+git switch foxy
+</pre>, make sure you are on foxy branch
+      <img src="https://github.com/WinstonHChou/winter-2024-final-project-team-7/assets/68310078/10398bc9-f546-497e-8e5f-9f380b39e018)"/><br>
+      Then, build 1st time under <code>sensor2_ws/src/vesc/src/vesc</code><br>
+<pre>
+colcon build
+source install/setup.bash
+</pre>
+      Then, 2nd time but under <code>sensor2_ws/src/vesc</code><br>
+<pre>
+cd /home/projects/sensor2_ws/src/vesc
+colcon build
+source install/setup.bash
+</pre>
+      Now, try <code>ros2 pkg xml vesc</code>, check if VESC pkg version has come to <code>1.2.0</code><br>
+  </li>      
   <li>Clone this repository</li>
-  <li>Replace the <i>ucsd_robocar_sensor2_pkg</i> and <i>ucsd_robocar_lane_detection2_pkg</i> in the default <i>ucsd_robocar_hub2</i> directory</li>
+  <li>Replace the <code>ucsd_robocar_sensor2_pkg</code> and <i>ucsd_robocar_lane_detection2_pkg</i> in the default <i>ucsd_robocar_hub2</i> directory</li>
   <li> Calibrate Your Robot
     <ol>
       <li>Toggle <i>camera_nav_calibration</i> to 1 and <i>camera_nav</i> to 0 within <i>node_config.yaml</i></li>
