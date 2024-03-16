@@ -63,31 +63,39 @@ The robot utilizes the ROS2 Navigation 2 stack and integrating LiDAR for SLAM (S
 <hr>
 
 ## Challenges
-* Combining our obstacle avoidance program on the track with the pedestrian detection proved to be more complicated than initially expected
-* Adapting the various nodes, creating unique publishers/subscribers, and implementing all of our code within ROS2
+* Nav2 Stack is a complex but useful system for developing an autonomous robot.
+* Futher Actions:
+  * PointCloud Dyanmic Obstacle Detection:  
+    - Develop an algorithm to mark down position of obstacle group, and add them to Nav2 obstacle layer
+  * Nav2 Path Planning & ROS 2 Control:  
+    - Path Planning Server Development, and communication to ROS 2 Control System
 <hr>
 
 ## Final Project Videos
-Click any of the clips below to reroute to the video. 
+**Click** any of the clips below to **reroute to the video**. 
 
-**Mapping**
+#### **Mapping**
 
-[<img src="images\Filtered_map.png" width="300">](https://youtu.be/1juHBhWz0MQ?si=Pjw60vCCNlXvP-IJ)
+[<img src="images\mapping.webp" width="300">](https://youtu.be/1juHBhWz0MQ?si=Pjw60vCCNlXvP-IJ)
 
-**Localization**
+#### **Localization**
 
-[<img src="images\robot_on_ground.webp" width="300">](https://youtu.be/MX7kB6Jm7y0?si=0zmViTiaanLxiC1R)
+[<img src="images\localization.webp" width="300">](https://youtu.be/MX7kB6Jm7y0?si=0zmViTiaanLxiC1R)
 
-**PCL Obstacle Detection**
+#### **PCL Obstacle Detection**
 
 [<img src="images\foxglove_pcl.webp" width="300">](https://youtu.be/iBNiwRAd4vU?si=_p8UwEmmzGuZwT1X)
 
 
-**Early Progress Clips**
+### **Early Progress Clips**
 
-Odom Frame Demo
+#### Odom Frame Demo
 
-[<img src="images\URDF.png" width="300">](https://youtu.be/PYMze0eOyS8?si=Nz3BIUGNAnoSLkpe)
+[<img src="images\odom.webp" width="300">](https://youtu.be/PYMze0eOyS8?si=Nz3BIUGNAnoSLkpe)
+
+#### Scan Correction Demo
+
+[<img src="images\laser_frame.webp" width="300">](https://youtu.be/-2ELt_U10Mc?si=TWcBfC-b9EcZiGpV)
 
 <hr>
 
@@ -151,7 +159,7 @@ Our circuit assembly process was guided by a circuit diagram provided by our cla
 ## Software
 
 ### Overall Architecture
-Our project was completed entirely with ROS2 navigation in python. The 'rclpy' package is being used to control the robot and our primary control logic consists of the Calibration, Person Detection, Lane Detection, Lane Guidance, and nodes.
+The project was completed with SLAM-Toolvox and ROS2 navigation 2 stack in python. 
 
 - The **Calibration Node** was adapted from Spring 2022 Team 1 and updated for our use case. We strictly needed the gold mask to follow the yellow lines and implemented our own lane following code.
   
@@ -221,6 +229,7 @@ Thanks to Nikita on Triton AI providing support on razorIMU_9dof repo for IMU us
 * [UCSD Robocar Framework](https://gitlab.com/ucsd_robocar2)
 * [DepthAI_ROS_Driver](https://github.com/luxonis/depthai-ros)
 * [razorIMU_9dof](https://github.com/NikitaB04/razorIMU_9dof)
+* [Foxglove Studio](https://app.foxglove.dev/)
 
 <hr>
 
