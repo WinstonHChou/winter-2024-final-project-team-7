@@ -140,7 +140,7 @@ __Camera Stand__
 
 Camera Stand components were designed in a way that it's an adjustable angle and height This design feature offers versatility and adaptability, ensuring optimal positioning of the camera to capture desired perspectives and accommodate various environments or setups.
 
-<img src="images\Camera_Stand_1.webp" height="160"> <img src="images\Camera_Stand_2.webp" height="160">
+<img src="images\Camera_Stand_1.webp" height="160"> <img src="images\Camera_Stand_2.webp" height="160"><br>
 <img src="images\Camera_Stand_3.webp" height="350">
 
 __GPS Plate__
@@ -239,9 +239,45 @@ colcon build
 source install/setup.bash
 </pre>
       Now, try <code>ros2 pkg xml vesc</code>, check if VESC pkg version has come to <code>1.2.0</code><br>
-  </li>      
-  <li>Clone this repository</li>
-  <li>Replace the <code>ucsd_robocar_sensor2_pkg</code> and <i>ucsd_robocar_lane_detection2_pkg</i> in the default <i>ucsd_robocar_hub2</i> directory</li>
+  </li>
+  <li>
+      Install Navigation 2 package, and related packages:<br>
+      <code>sudo apt install ros-foxy-navigation2 ros-foxy-nav2* ros-foxy-robot-state-publisher ros-foxy-joint-state-publisher</code>
+  </li>
+  <li>
+      Clone this repository, 
+<pre>
+cd /home/projects/ros2_ws/src
+git clone https://github.com/WinstonHChou/winter-2024-final-project-team-7.git
+cd winter-2024-final-project-team-7/
+</pre>
+      There a <code>Replace_to_ucsd_robocar_nav2</code> folder, which includes several files you'd like to replace/place to <code>ucsd_robocar_nav2_pkg</code><br>
+      <ol>
+          <li><code>scan_correction.yaml</code>, <code>mapper_params_online_async.yaml</code>, <code>node_config.yaml</code>, <code>node_pkg_locations_ucsd.yaml</code><br>should be placed to <code>/home/projects/ros2_ws/src/ucsd_robocar_hub2/ucsd_robocar_nav2_pkg/config/</code></li>
+          <li><code>sensor_visualization.rviz</code><br>should be placed to <code>/home/projects/ros2_ws/src/ucsd_robocar_hub2/ucsd_robocar_nav2_pkg/rviz/</code></li>
+          <li><code>ucsdrobocar-148-07.urdf</code><br>should be placed to <code>/home/projects/ros2_ws/src/ucsd_robocar_hub2/ucsd_robocar_nav2_pkg/urdf/</code><br>(you can edit URDF if you want to, <url>https://docs.ros.org/en/foxy/Tutorials/Intermediate/URDF/URDF-Main.html</url>)</li>
+          <li><code>urdf_publisher_launch.launch.py</code><br>should be placed to <code>/home/projects/ros2_ws/src/ucsd_robocar_hub2/ucsd_robocar_nav2_pkg/launch/</code></li>
+          <li><code>package.xml</code><br>should be placed to <code>/home/projects/ros2_ws/src/ucsd_robocar_hub2/ucsd_robocar_nav2_pkg/</code></li>
+      </ol><br>
+      Next, modify <code>setup.py</code> in <code>/home/projects/ros2_ws/src/ucsd_robocar_hub2/ucsd_robocar_nav2_pkg/</code>,<br>
+      and add <code>(os.path.join('share', package_name, 'urdf'), glob('urdf/*.urdf'))</code><br>
+      Then,
+<pre>
+build_ros2
+ros2 launch ucsd_robocar_nav2_pkg all_nodes.launch.py
+</pre>If functional, pre-setting for SLAM is done.
+      <ul> 
+          <li>Follow this instuction if you only want to do SLAM, <a href="https://youtu.be/ZaiA3hWaRzE?si=heDZifDYEvBQl7yD"/>Easy SLAM Instruction Video on ROS 2 Foxy</a></li>
+          <li>Since you might adjust setting of VESC pkg for vesc_odom, here's additonal resource <a href="https://f1tenth.readthedocs.io/en/foxy_test/getting_started/driving/drive_calib_odom.html#calibrating-the-steering-and-odometry"/>f1tenth calibrating VESC Odom</a></li>
+          <li>
+      </ul>
+  </li>
+  <li> Setting up Seeed IMU, follow instructions 
+      <ul> 
+          <li><a href="https://wiki.seeedstudio.com/XIAO_BLE/"/>Seeed Seeed Studio XIAO nRF52840 Sense</a></li> 
+          <li><a href="https://github.com/NikitaB04/razorIMU_9dof"/>razorIMU_9dof</a></li> 
+      </ul>
+  </li>
   <li> Calibrate Your Robot
     <ol>
       <li>Toggle <i>camera_nav_calibration</i> to 1 and <i>camera_nav</i> to 0 within <i>node_config.yaml</i></li>
