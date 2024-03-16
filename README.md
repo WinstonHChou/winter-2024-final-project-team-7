@@ -4,7 +4,7 @@
 #### <div align="center"> Team 7 Winter 2024 </div>
 
 <div align="center">
-    <img src="images\ucsdrobocar-148-07.HEIC" width="500" height="400">
+    <img src="images\ucsdrobocar-148-07.webp" width="500" height="400">
 </div>
 
 ## Table of Contents
