@@ -242,11 +242,11 @@ source install/setup.bash
       Now, try <code>ros2 pkg xml vesc</code>, check if VESC pkg version has come to <code>1.2.0</code><br>
   </li>
   <li>
-      Install Navigation 2 package, and related packages:<br>
+      Install <b>Navigation 2</b> package, and related packages:<br>
       <code>sudo apt install ros-foxy-navigation2 ros-foxy-nav2* ros-foxy-robot-state-publisher ros-foxy-joint-state-publisher</code>
   </li>
   <li>
-      Clone this repository, 
+      <b>Clone</b> this repository, 
 <pre>
 cd /home/projects/ros2_ws/src
 git clone https://github.com/WinstonHChou/winter-2024-final-project-team-7.git
@@ -283,9 +283,10 @@ ros2 launch ucsd_robocar_nav2_pkg all_nodes.launch.py
                   </li>
               </ul>
           </li>
+          <li>If you made changes in <code>vesc_to_odom.cpp</code>, must repeat <b>Step. 3 to rebuild VESC pkg</b></li>
       </ul>
   </li>
-  <li> Setting up Seeed IMU, follow instructions 
+  <li> Setting up <b>Seeed IMU</b>, follow instructions 
       <ul> 
           <li><a href="https://wiki.seeedstudio.com/XIAO_BLE/"/>Seeed Seeed Studio XIAO nRF52840 Sense</a></li> 
           <li><a href="https://github.com/NikitaB04/razorIMU_9dof"/>razorIMU_9dof</a></li> 
@@ -297,7 +298,7 @@ build_ros2
 ros2 launch team_7_external Seeed_imu.launch.py
 </pre>
   </li>
-  <li> DepthAI ROS & team_7_obstacle_detection Installation
+  <li> <b>DepthAI ROS & team_7_obstacle_detection Installation</b>
     <ol>
       <li>Install Depthai and related packages,<br><code>sudo apt install ros-foxy-depthai* ros-foxy-sensor-msgs-py</code></li>
       <li>If you're using an OAK-D Lite,
@@ -306,20 +307,17 @@ ros2 launch team_7_external Seeed_imu.launch.py
               <li>adjust <code>pcl.yaml</code>,<br><code>nano /opt/ros/foxy/share/depthai_ros_driver/config/pcl.yaml</code><br>Disable imu and ir, and comment out "oak:"<br><img src="https://github.com/WinstonHChou/winter-2024-final-project-team-7/assets/68310078/d4ec90b2-f20f-46f5-8474-c70a546a5cb5"></li>
           </ul>
       </li>                  
-      <li>Open an additional terminal, <br><code>ros2 launch depthai_ros_driver pointcloud.launch.py</code> to publish <code>/oak/points</code> ros 2 topic</li>
-      <li>Toggle <i>camera_nav_calibration</i> to 0 and <i>camera_nav</i> to 1 within <i>node_config.yaml</i></li>
-      <li>Update your PID and throttle values in <i>ros_racer_calibration.yaml</i></li>
+      <li>Open an additional terminal, <br><code>ros2 launch depthai_ros_driver pointcloud.launch.py</code> to publish <code>/oak/points</code> ros 2 topic.</li>
+      <li>Open an additional terminal, <br><code>ros2 launch team_7_obstacle_detection obstacle_detection.launch.py</code>. Now, you are able to detect a simple obstacle using height < 2 meters. (Adjustable in the launch file)</li>
     </ol>
   </li>
-  <li>Run on Track</li>
-    <ol>
-        <li>Run <i>source_ros2</i>, <i>build_ros2</i>, and then <i>ros2 launch ucsd_robocar_nav2_pkg all_nodes.launch.py</i> </li>
-    </ol>
+  <li>
+      <b>Foxglove Studio</b>, using rosbridge_server<br>
+      Download <a href="https://foxglove.dev/download">Foxglove Studio</a>. And Follow instructions <url>https://docs.foxglove.dev/docs/introduction/</url>
+  </li>
 </ol>
 
-Alternatively you can refer to the `lane_guidance_node.py` and `lane_detection_node.py` programs in `ucsd_robocar_lane_detection2_pkg/ucsd_robocar_lane_detection2_pkg` to adapt our code as needed for your project. We have extensive comments through the code explaining what is happening. Additionally, if you search for <i>(Edit as Wanted)</i> in our code, we have listed the primary areas where one would want to adjust parameters to adapt the lidar usage, pedestrian detection logic, and more. Some consistent, but simple and relevant issues we encountered were ensuring file pathways were correct and making sure that all dependencies are installed.
-
-**Best of luck!**
+That's it! Most of setting are above. If you need any assistance on how to utilze this repo, you may create new issue on this GitHub repo, or contact w3chou@ucsd.edu if needed.
 
 <hr>
 
