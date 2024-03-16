@@ -70,44 +70,30 @@ The robot utilizes the ROS2 Navigation 2 stack and integrating LiDAR for SLAM (S
 ## Final Project Videos
 Click any of the clips below to reroute to the video. 
 
-**Final Demo**
+**Mapping**
 
-[<img src="images\finalDemo.PNG" width="600">](https://drive.google.com/file/d/1g-VeBIl5gdUQflPbHFEFg3UOX2X36orz/view?usp=drive_link)
+[<img src="images\Filtered_map.png" width="300">](https://youtu.be/1juHBhWz0MQ?si=Pjw60vCCNlXvP-IJ)
 
+**Localization**
 
-**Final Clips**
+[<img src="images\robot_on_ground.webp" width="300">](https://youtu.be/MX7kB6Jm7y0?si=0zmViTiaanLxiC1R)
 
-Everything Together (3rd Person)
+**PCL Obstacle Detection**
 
-[<img src="images\everything.PNG" width="300">](https://drive.google.com/file/d/1p2i5tRBihoJaQEioC826KT2X-poMZBU0/view?usp=drive_link)
+[<img src="images\foxglove_pcl.webp" width="300">](https://youtu.be/iBNiwRAd4vU?si=_p8UwEmmzGuZwT1X)
 
-Everything Together (POV)
-
-[<img src="images\pov.PNG" width="300">](https://drive.google.com/file/d/1Jt7cPzaUdMSlrA__SZ71dYU6QvQGNySb/view?usp=drive_link)
-
-Obstacle Avoidance
-
-[<img src="images\earlyAvoid.PNG" width="300">](https://drive.google.com/file/d/1Pd8OklPu9tDEfgzJNNkNkR_zGN-SYbMb/view?usp=drive_link)
-
-Pedestrian Detection
-
-[<img src="images\personDetected.PNG" width="300">](https://drive.google.com/file/d/11qNUHqOkSNa8mivNA_k-UFk8U7LfdoAp/view?usp=drive_link)
 
 **Early Progress Clips**
 
-Early Obstacle Avoidance
+Odom Frame Demo
 
-[<img src="images\earlierAvoid.PNG" width="300">](https://drive.google.com/file/d/14KP8B8-IEhhGi5ObEtc7LC3ndSPOTO66/view?usp=drive_link)
-
-Early Pedestrian Detection
-
-[<img src="images\earlyPed.PNG" width="300">](https://drive.google.com/file/d/1O3riZQaE1dmO9sFID_FuAqzC17s5VZ9x/view?usp=drive_link)
+[<img src="images\URDF.png" width="300">](https://youtu.be/PYMze0eOyS8?si=Nz3BIUGNAnoSLkpe)
 
 <hr>
 
 ## Hardware 
 
-* __3D Printing:__ Camera Stand, Jetson Nano Case
+* __3D Printing:__ Camera Stand, Jetson Nano Case, GPS Plate, Lidar Mount
 * __Laser Cut:__ Base plate to mount electronics and other components.
 
 __Parts List__
@@ -138,7 +124,7 @@ __Parts List__
 
 ### __Mechanical Design Highlight__
 
-__Baseplate__
+__Base Plate__
 
 <img src="images\BasePlate_1.webp" height="350"> <img src="images\BasePlate_2.webp" height="350">
 
@@ -148,6 +134,10 @@ Camera Stand components were designed in a way that it's an adjustable angle and
 
 <img src="images\Camera_Stand_1.webp" height="160"> <img src="images\Camera_Stand_2.webp" height="160">
 <img src="images\Camera_Stand_3.webp" height="350">
+
+__GPS Plate__
+
+<img src="images\GPS_Plate.webp" height="300">
 
 __Circuit Diagram__
 
@@ -190,10 +180,9 @@ Here are our autonomous laps as part of our class deliverables:
 * lane following: https://photos.app.goo.gl/pQ7n9FB2srGJNkFz9 
 * GPS: https://youtu.be/92Q-JpYGPZk?si=UYrh6Mo9-b4TGgYO
 
-Team 7's the weekly project status updates and final presentation:
-[Team 7 weekly status updates](https://docs.google.com/presentation/d/e/2PACX-1vSWm0AW0yZ6IKFCnXcJtbBB0NPDEejXtwTStLtW3yOxjlFvpV0wWUp3y91MQgVq3j63RR5WNTfaSFZW/pub?start=false&loop=false&delayms=3000)
-
-[Team_7_Final_Presentation](https://docs.google.com/presentation/d/e/2PACX-1vRGnL11PP4RDo87JKWF-kLgD4dVyRBdL_eSWTUIe0eLQumJOI_wawX6sBa7MOMksFe8tPUjdFZBWRRE/pub?start=false&loop=false&delayms=3000)
+Team 7's the weekly project Status Update and Final Presentation:  
+* [Team 7 weekly status updates](https://docs.google.com/presentation/d/e/2PACX-1vSWm0AW0yZ6IKFCnXcJtbBB0NPDEejXtwTStLtW3yOxjlFvpV0wWUp3y91MQgVq3j63RR5WNTfaSFZW/pub?start=false&loop=false&delayms=3000)
+* [Team 7 Final Presentation](https://docs.google.com/presentation/d/e/2PACX-1vRGnL11PP4RDo87JKWF-kLgD4dVyRBdL_eSWTUIe0eLQumJOI_wawX6sBa7MOMksFe8tPUjdFZBWRRE/pub?start=false&loop=false&delayms=3000)
 <hr>
 
 ## Project Reproduction
@@ -224,8 +213,8 @@ Alternatively you can refer to the `lane_guidance_node.py` and `lane_detection_n
 <hr>
 
 ## Acknowledgements
-Special thanks to Professor Jack Silberman and TA Arjun Naageshwaran for delivering the course!
-Thanks to Raymond on Triton AI giving suggestions on our project!
+Special thanks to Professor Jack Silberman and TA Arjun Naageshwaran for delivering the course!  
+Thanks to Raymond on Triton AI giving suggestions on our project!  
 Thanks to Nikita on Triton AI providing support on razorIMU_9dof repo for IMU usage!
 
 **Programs Referenced:**
