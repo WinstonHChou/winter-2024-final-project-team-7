@@ -15,12 +15,12 @@
     <li><a href="#accomplishments">Accomplishments</a></li>
     <li><a href="#challenges">Challenges</a></li>
     <li><a href="#final-project-videos">Final Project Videos</a></li>
-    <li><a href="#hardware">Hardware</a></li>
     <li><a href="#software">Software</a></li>
         <ul>
+            <li><a href="#SLAM (Simultaneous Localization and Mapping)">SLAM (Simultaneous Localization and Mapping)</a></li>
             <li><a href="#obstacle-avoidance">Obstacle Avoidance</a></li>
-            <li><a href="#pedestrian-detection">Pedestrian Detection</a></li>
         </ul>
+    <li><a href="#hardware">Hardware</a></li>
     <li><a href="#gantt-chart">Gantt Chart</a></li>
     <li><a href="#course-deliverables">Course Deliverables</a></li>
     <li><a href="#project-reproduction">Project Reproduction</a></li>
@@ -56,7 +56,8 @@ The robot utilizes the ROS2 Navigation 2 stack and integrating LiDAR for SLAM (S
 
 ## Accomplishments
 * SLAM development accomplished
-  * It enables the robot to map an unknown environment, and to locate its position. 
+  * It enables the robot to map an unknown environment, and to locate its position.
+  * Seeed IMU setup for better localization (Extended Kalman Filter).
 * Obstacle Avoidance
   * Utilize its depth sensing capabilities to generate a point cloud representation of the environment. (Rviz2 and Foxglove Studio)
   * Simple obstacle detection algorithm
@@ -97,6 +98,47 @@ The robot utilizes the ROS2 Navigation 2 stack and integrating LiDAR for SLAM (S
 
 [<img src="images\laser_frame.webp" width="300">](https://youtu.be/-2ELt_U10Mc?si=TWcBfC-b9EcZiGpV)
 
+<hr>
+
+## Software
+
+### Overall Architecture
+The project was successfully completed using the Slam-Toolbox and ROS2 Navigation 2 Stack, with a significant adaptation to the [djnighti/ucsd_robocar container](https://hub.docker.com/r/djnighti/ucsd_robocar). The adaptation allowed for seamless integration and deployment of the required components, facilitating efficient development and implementation of the robotic system.
+
+### SLAM (Simultaneous Localization and Mapping)
+- The **Slam Toolbox** proved indispensable in our project, enabling us to integrate the LD19 Lidar – firmware-compatible with the LD06 model – into the ROS2 framework. This integration allowed us to implement SLAM, empowering our robot to autonomously map its environment while concurrently determining its precise location within it. Additionally, we enhanced this capability by incorporating nav2 amcl localization, further refining the accuracy and dependability of our robot's localization system. By combining these technologies, our robot could navigate confidently, accurately mapping its surroundings and intelligently localizing itself within dynamic environments.<br>
+
+- The **Online Async Node** from the Slam Toolbox is a crucial component that significantly contributes to the creation of the map_frame in the project. This node operates asynchronously, meaning it can handle data processing tasks independently of other system operations, thereby ensuring efficient utilization of resources and enabling real-time performance. The map_frame is a fundamental concept in SLAM, representing the coordinate frame that defines the global reference frame for the environment map being generated. The asynchronous online node processes Lidar data, and fuses this information together to construct a coherent and accurate representation of the surrounding environment.<br>
+
+- The **VESC Odom Node** plays a pivotal role in supplying vital odometry frame data within the robotics system. This node is responsible for gathering information from the VESC (Vedder Electronic Speed Controller), and retrieves essential data related to the robot's motion, such as wheel velocities and motor commands. The odometry frame, often referred to as the "odom_frame," is a critical component in localization and navigation tasks. It represents the robot's estimated position and orientation based on its motion over time. This information is crucial for accurately tracking the robot's trajectory and determining its current pose within the environment. By utilizing the data provided by the VESC Odom Node, the system can update the odometry frame in real-time, reflecting the robot's movements and changes in its position. This dynamic updating ensures that the odometry frame remains synchronized with the robot's actual motion, providing an accurate representation of its trajectory.<br>
+
+<div align="center">
+    <img src="images\Frames_Relationships.png" height="300"><br>
+    <b>from https://answers.ros.org/question/387751/difference-between-amcl-and-odometry-source/</b><br>
+    <img src="images\tf_tree.webp" height="600"><br>
+    <b>Our Robot TF Tree</b><br>
+</div><br>
+
+- The **Seeed IMU Node** is used to publish IMU data Seeed Studio XIAO nRF52840 Sense. By integrating the Seeed Studio XIAO nRF52840 Sense's 6-Axis IMU and implementing an Extended Kalman Filter (Not Done), the robot gains improved localization accuracy and reduced odometry drift. The IMU provides orientation and acceleration data, complementing other sensors like wheel encoders and GPS. The Extended Kalman Filter fuses IMU and odometry measurements, dynamically adjusting uncertainties to mitigate noise and inaccuracies, resulting in enhanced navigation performance and reliability.<br>
+
+<div align="center">
+    <img src="https://github.com/WinstonHChou/winter-2024-final-project-team-7/assets/68310078/897b3a72-5760-4389-8faf-1873f8b8709a" height="300"><br>
+    <b><a href="https://youtu.be/QrzTvfnHyqE">Seeed IMU Demo</a></b>
+</div><br>
+
+- The **Scan Correction Node** becomes particularly useful when there are specific sections of Lidar data that we wish to exclude from being collected by SLAM. This node allows us to define undesired ranges within the Lidar data and effectively filter them out, ensuring that only relevant and accurate information is utilized in the SLAM process. This capability enhances the overall quality and reliability of the generated map by preventing erroneous or irrelevant data from influencing the mapping and localization algorithms.
+<br>
+<div align="center">
+    <img src="images\Non-filtered_map.png" height="300"><br>
+    <b>Before filtered</b><br>
+    <img src="images\Filtered_map.png" height="300"><br>
+    <b>After filtered</b>
+</div>
+
+### Obstacle Avoidance
+We used the OAK-D Lite depth camera to implement obstacle avoidance within ROS2. The program logic is quite simple in that we are constantly scanning the 60 degrees in front of the robot. If an object is detected within our distance threshold, the robot will accordingly make a turn to avoid it. Our logic for selecting which direction to turn in is quite simple in that if the object is on the left side, we first turn right, and otherwise, we turn left. Both turning directions include a corrective turn to bring the robot back to the centerline of the track and continue lane following.
+
+We used the DepthAI package to implement pedestrian detection within ROS2. We took advantage of the Tiny YOLO neural network setup found within the examples. We filter through the detections to check strictly for a "person" with adjustable confidence levels. We found that a 60% confidence level worked pretty well for our project's use cases. Surprisingly, we found better results with real humans walking in front of the robot (it would detect their feet and be able to classify them as "person" objects). We were also able to successfully scan various printout images of people with high accuracy and success. The programming logic for pedestrian detection is very simple in that if a "person" has been detected in the image passed through by the camera, the VESC throttles are set to 0, stopping the car, until the person has moved out of the field of view.
 <hr>
 
 ## Hardware 
@@ -156,29 +198,10 @@ Our circuit assembly process was guided by a circuit diagram provided by our cla
 
 <hr>
 
-## Software
-
-### Overall Architecture
-The project was completed with Slam-Toolbox and ROS2 Navigation 2 Stack in python. 
-
-- The **Calibration Node** was adapted from Spring 2022 Team 1 and updated for our use case. We strictly needed the gold mask to follow the yellow lines and implemented our own lane following code.
-  
-- The **Person Detection Topic** was fully created for our team's project implementation. The topic is created in our oakd_node.py inside the ucsd_robocar_sensor2_pkg. The oakd_node publishes two topics the first being a color image feed from the camera and the second being an integer value of 1s or 0s for whether it sees a person or not, respectively, using the depth AI's neural network. In order to get the oakd_node running with the rest of the car during navigation a switch must be created in the car_config.yaml file to launch the oakd_launch.launch.py file created in the ucsd_robocar_sensor2_pkg and the previous oakd node must be switched off. The person detection topic is subscribed to in the Lane Guidance Node which ultimately controls the vehicle, while the camera feed is subscribed to in the lane detection node which finds the yellow lines to follow. 
-
-- The **Lane Detection Node** is used to control the robot within the track. We adapt the PID function to calculate the error and set new values to determine the optimal motion of the car to continue following the yellow lines in the lane. This is done by taking the raw camera image, using callibrated color values to detect yellow, and ultimately using the processed image to publish the control values that are subscribed by the lane guidance node.
-
-- Ultimately, the "magic" happens within the **Lane Guidance Node** which is responsible for directly controlling car's movement. We have adapted the Lidar subscription from Spring 2022 Team 1 to detect obstacles within a particular viewing range in front of our car. The lane guidance node subscribes to lane detection node and our Person Detection nodes to correctly traverse the path. If no obstacles are detected, the car will simply continue its line following program, sticking to the yellow lines in the middle of the lane. If an obstacle is detected by the lidar, the car will correspondingly make a turn based on the object's angle and distance. As it routes around the object, the car continues to check for obstacles to avoid any collision and come back to the path. Additionally, if the subscription to the person_detected node is triggered as active, then the car knows there is a pedestrian in view and will stop.
-
-### Obstacle Avoidance
-We used the LD06 Lidar to implement obstacle avoidance within ROS2. The program logic is quite simple in that we are constantly scanning the 60 degrees in front of the robot. If an object is detected within our distance threshold, the robot will accordingly make a turn to avoid it. Our logic for selecting which direction to turn in is quite simple in that if the object is on the left side, we first turn right, and otherwise, we turn left. Both turning directions include a corrective turn to bring the robot back to the centerline of the track and continue lane following.
-
-### Pedestrian Detection
-We used the DepthAI package to implement pedestrian detection within ROS2. We took advantage of the Tiny YOLO neural network setup found within the examples. We filter through the detections to check strictly for a "person" with adjustable confidence levels. We found that a 60% confidence level worked pretty well for our project's use cases. Surprisingly, we found better results with real humans walking in front of the robot (it would detect their feet and be able to classify them as "person" objects). We were also able to successfully scan various printout images of people with high accuracy and success. The programming logic for pedestrian detection is very simple in that if a "person" has been detected in the image passed through by the camera, the VESC throttles are set to 0, stopping the car, until the person has moved out of the field of view.
-<hr>
-
 ## Gantt Chart
-
-<img src="images\gantt_chart.webp" height="500">
+<div align="center">
+    <img src="images\gantt_chart.webp" height="500">
+</div>
 <hr>
 
 ## Course Deliverables
