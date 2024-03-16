@@ -2,6 +2,11 @@
 ![image](https://github.com/WinstonHChou/winter-2024-final-project-team-7/assets/68310078/0ba1c6cb-c9e0-4cf7-905a-f5f16e6bb2ca)
 ### <div align="center"> MAE 148 Final Project </div>
 #### <div align="center"> Team 7 Winter 2024 </div>
+
+<div align="center">
+    <img src="images\ucsdrobocar-148-07.HEIC" width="500" height="400">
+</div>
+
 ## Table of Contents
   <ol>
     <li><a href="#team-members">Team Members</a></li>
