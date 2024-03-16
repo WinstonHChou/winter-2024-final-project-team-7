@@ -159,7 +159,7 @@ Our circuit assembly process was guided by a circuit diagram provided by our cla
 ## Software
 
 ### Overall Architecture
-The project was completed with SLAM-Toolvox and ROS2 navigation 2 stack in python. 
+The project was completed with Slam-Toolbox and ROS2 Navigation 2 Stack in python. 
 
 - The **Calibration Node** was adapted from Spring 2022 Team 1 and updated for our use case. We strictly needed the gold mask to follow the yellow lines and implemented our own lane following code.
   
@@ -225,8 +225,9 @@ Special thanks to Professor Jack Silberman and TA Arjun Naageshwaran for deliver
 Thanks to Raymond on Triton AI giving suggestions on our project!  
 Thanks to Nikita on Triton AI providing support on razorIMU_9dof repo for IMU usage!
 
-**Programs Referenced:**
+**Programs Reference:**
 * [UCSD Robocar Framework](https://gitlab.com/ucsd_robocar2)
+* [Slam Toolbox](https://github.com/SteveMacenski/slam_toolbox.git)
 * [DepthAI_ROS_Driver](https://github.com/luxonis/depthai-ros)
 * [razorIMU_9dof](https://github.com/NikitaB04/razorIMU_9dof)
 * [Foxglove Studio](https://app.foxglove.dev/)
@@ -236,5 +237,5 @@ Thanks to Nikita on Triton AI providing support on razorIMU_9dof repo for IMU us
 ## Contacts
 
 * Winston Chou - w3chou@ucsd.edu | winston.ckhs@gmail.com | [LinkedIn](https://www.linkedin.com/in/winston-wei-han-chou-a02214249/)
-* Amir Riahi - 
+* Amir Riahi - amirriahi760@yahoo.com
 * Rayyan Khalid - 
