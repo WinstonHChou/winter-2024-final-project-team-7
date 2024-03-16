@@ -49,11 +49,3 @@ qtcreator-*
 
 # Catkin custom files
 CATKIN_IGNORE
-
-#images folder ignore
-*.mov
-*.MOV
-*.mp4
-*.jpg
-*.png
-*.webp
