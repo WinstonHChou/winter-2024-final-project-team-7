@@ -17,7 +17,7 @@
     <li><a href="#final-project-videos">Final Project Videos</a></li>
     <li><a href="#software">Software</a></li>
         <ul>
-            <li><a href="#SLAM (Simultaneous Localization and Mapping)">SLAM (Simultaneous Localization and Mapping)</a></li>
+            <li><a href="#slam-simultaneous-localization-and-mapping">SLAM (Simultaneous Localization and Mapping)</a></li>
             <li><a href="#obstacle-avoidance">Obstacle Avoidance</a></li>
         </ul>
     <li><a href="#hardware">Hardware</a></li>
@@ -103,20 +103,30 @@ The robot utilizes the ROS2 Navigation 2 stack and integrating LiDAR for SLAM (S
 ## Software
 
 ### Overall Architecture
-The project was successfully completed using the Slam-Toolbox and ROS2 Navigation 2 Stack, with a significant adaptation to the [djnighti/ucsd_robocar container](https://hub.docker.com/r/djnighti/ucsd_robocar). The adaptation allowed for seamless integration and deployment of the required components, facilitating efficient development and implementation of the robotic system.
+The project was successfully completed using the **Slam-Toolbox** and **ROS2 Navigation 2 Stack**, with a significant adaptation to the [djnighti/ucsd_robocar container](https://hub.docker.com/r/djnighti/ucsd_robocar). The adaptation allowed for seamless integration and deployment of the required components, facilitating efficient development and implementation of the robotic system.
 
 ### SLAM (Simultaneous Localization and Mapping)
 - The **Slam Toolbox** proved indispensable in our project, enabling us to integrate the LD19 Lidar – firmware-compatible with the LD06 model – into the ROS2 framework. This integration allowed us to implement SLAM, empowering our robot to autonomously map its environment while concurrently determining its precise location within it. Additionally, we enhanced this capability by incorporating nav2 amcl localization, further refining the accuracy and dependability of our robot's localization system. By combining these technologies, our robot could navigate confidently, accurately mapping its surroundings and intelligently localizing itself within dynamic environments.<br>
 
 - The **Online Async Node** from the Slam Toolbox is a crucial component that significantly contributes to the creation of the map_frame in the project. This node operates asynchronously, meaning it can handle data processing tasks independently of other system operations, thereby ensuring efficient utilization of resources and enabling real-time performance. The map_frame is a fundamental concept in SLAM, representing the coordinate frame that defines the global reference frame for the environment map being generated. The asynchronous online node processes Lidar data, and fuses this information together to construct a coherent and accurate representation of the surrounding environment.<br>
 
-- The **VESC Odom Node** plays a pivotal role in supplying vital odometry frame data within the robotics system. This node is responsible for gathering information from the VESC (Vedder Electronic Speed Controller), and retrieves essential data related to the robot's motion, such as wheel velocities and motor commands. The odometry frame, often referred to as the "odom_frame," is a critical component in localization and navigation tasks. It represents the robot's estimated position and orientation based on its motion over time. This information is crucial for accurately tracking the robot's trajectory and determining its current pose within the environment. By utilizing the data provided by the VESC Odom Node, the system can update the odometry frame in real-time, reflecting the robot's movements and changes in its position. This dynamic updating ensures that the odometry frame remains synchronized with the robot's actual motion, providing an accurate representation of its trajectory.<br>
+- The **VESC Odom Node** plays a pivotal role in supplying vital odometry frame data within the robotics system. This node is responsible for gathering information from the VESC (Vedder Electronic Speed Controller), and retrieves essential data related to the robot's motion, such as wheel velocities and motor commands. The odometry frame, often referred to as the "odom_frame," is a critical component in localization and navigation tasks. It represents the robot's estimated position and orientation based on its motion over time. This information is crucial for accurately tracking the robot's trajectory and determining its current pose within the environment. By utilizing the data provided by the VESC Odom Node, the system can update the odometry frame in real-time, reflecting the robot's movements and changes in its position. This dynamic updating ensures that the odometry frame remains synchronized with the robot's actual motion, providing an accurate representation of its trajectory.
 
+<br>
 <div align="center">
     <img src="images\Frames_Relationships.png" height="300"><br>
     <b>from https://answers.ros.org/question/387751/difference-between-amcl-and-odometry-source/</b><br>
     <img src="images\tf_tree.webp" height="600"><br>
     <b>Our Robot TF Tree</b><br>
+</div><br>
+
+- The **URDF Publisher** is a tool used to generate and publish Unified Robot Description Format (URDF) models within the ROS 2 ecosystem.
+<br>
+<div align="center">
+    <img src="images\URDF.png" height="300"><br>
+    <b>URDF Model of the robot</b><br>
+    <img src="images\robot_on_ground.webp" height="300"><br>
+    <b>Physical Robot</b><br>
 </div><br>
 
 - The **Seeed IMU Node** is used to publish IMU data Seeed Studio XIAO nRF52840 Sense. By integrating the Seeed Studio XIAO nRF52840 Sense's 6-Axis IMU and implementing an Extended Kalman Filter (Not Done), the robot gains improved localization accuracy and reduced odometry drift. The IMU provides orientation and acceleration data, complementing other sensors like wheel encoders and GPS. The Extended Kalman Filter fuses IMU and odometry measurements, dynamically adjusting uncertainties to mitigate noise and inaccuracies, resulting in enhanced navigation performance and reliability.<br>
@@ -130,15 +140,28 @@ The project was successfully completed using the Slam-Toolbox and ROS2 Navigatio
 <br>
 <div align="center">
     <img src="images\Non-filtered_map.png" height="300"><br>
-    <b>Before filtered</b><br>
+    <b>Before filtered</b><br><br>
     <img src="images\Filtered_map.png" height="300"><br>
     <b>After filtered</b>
 </div>
 
 ### Obstacle Avoidance
-We used the OAK-D Lite depth camera to implement obstacle avoidance within ROS2. The program logic is quite simple in that we are constantly scanning the 60 degrees in front of the robot. If an object is detected within our distance threshold, the robot will accordingly make a turn to avoid it. Our logic for selecting which direction to turn in is quite simple in that if the object is on the left side, we first turn right, and otherwise, we turn left. Both turning directions include a corrective turn to bring the robot back to the centerline of the track and continue lane following.
+We utlized the OAK-D Lite depth camera to implement obstacle avoidance functionality within the ROS2 framework. Leveraging its depth sensing capabilities, we utilized the camera to generate a point cloud representation of the environment. The program logic is straightforward: the robot detects obstacles by identifying areas where the height is less than 2 meters (customizable) in front of it. If an object is detected within this distance threshold, the robot dynamically adjusts its trajectory to avoid collision, typically by making a turn. This simple yet effective approach allows the robot to navigate safely through its environment, reacting to potential obstacles in real-time to ensure smooth and obstacle-free movement.
+<br>
+<div align="center">
+    <img src="images\rviz_pcl.jpg" height="300"><br>
+    <b>PointCloud Visualization with Rviz2</b><br><br>
+    <img src="images\foxglove_pcl.webp" height="300"><br>
+    <b>PointCloud Visualization with Foxglove Studio</b>
+</div><br>
 
-We used the DepthAI package to implement pedestrian detection within ROS2. We took advantage of the Tiny YOLO neural network setup found within the examples. We filter through the detections to check strictly for a "person" with adjustable confidence levels. We found that a 60% confidence level worked pretty well for our project's use cases. Surprisingly, we found better results with real humans walking in front of the robot (it would detect their feet and be able to classify them as "person" objects). We were also able to successfully scan various printout images of people with high accuracy and success. The programming logic for pedestrian detection is very simple in that if a "person" has been detected in the image passed through by the camera, the VESC throttles are set to 0, stopping the car, until the person has moved out of the field of view.
+We integrated the DepthAI ROS package into our ROS2 setup to enable object detection functionality. Within the package, we utilized the provided YOLO (You Only Look Once) neural network setup for object detection. This configuration allowed our robot to detect objects in its environment in real-time using deep learning techniques. By leveraging the YOLO neural network, our robot could accurately identify and classify various objects, enhancing its perception and autonomy for effective navigation in dynamic environments.
+<br>
+<div align="center">
+    <img src="images\6_yolo_v3_tf_object_detection.webp" height="300"><br>
+    <b>yolo_v3_tf_object_detection</b><br><br>
+</div>
+
 <hr>
 
 ## Hardware 
@@ -331,7 +354,7 @@ ros2 launch team_7_external Seeed_imu.launch.py
           </ul>
       </li>                  
       <li>Open an additional terminal, <br><code>ros2 launch depthai_ros_driver pointcloud.launch.py</code> to publish <code>/oak/points</code> ros 2 topic.</li>
-      <li>Open an additional terminal, <br><code>ros2 launch team_7_obstacle_detection obstacle_detection.launch.py</code>. Now, you are able to detect a simple obstacle using height < 2 meters. (Adjustable in the launch file)</li>
+      <li>Open an additional terminal, <br><code>ros2 launch team_7_obstacle_detection obstacle_detection.launch.py</code>. Now, you are able to detect a simple obstacle using height < 2 meters. (<b>Adjustable</b> in the launch file)</li>
     </ol>
   </li>
   <li>
