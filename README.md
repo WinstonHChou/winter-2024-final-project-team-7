@@ -225,7 +225,8 @@ ros2 launch slam_toolbox online_async_launch.py
 cd /home/projects/sensor2_ws/src/vesc/src/vesc
 git pull
 git switch foxy
-</pre>, make sure you are on foxy branch
+</pre><br>
+      make sure you are on foxy branch
       <img src="https://github.com/WinstonHChou/winter-2024-final-project-team-7/assets/68310078/10398bc9-f546-497e-8e5f-9f380b39e018)"/><br>
       Then, build 1st time under <code>sensor2_ws/src/vesc/src/vesc</code><br>
 <pre>
@@ -265,11 +266,23 @@ cd winter-2024-final-project-team-7/
 <pre>
 build_ros2
 ros2 launch ucsd_robocar_nav2_pkg all_nodes.launch.py
-</pre>If functional, pre-setting for SLAM is done.
+</pre>If <b>functional</b>, pre-setting for SLAM is done. Note: <b>scan_correction</b> and <b>urdf_publisher</b> nodes are now able to be launch by <code>all_nodes.launch.py</code>. Remember to toggle settings for them <code>node_config.yaml</code>.<br>
       <ul> 
-          <li>Follow this instuction if you only want to do SLAM, <a href="https://youtu.be/ZaiA3hWaRzE?si=heDZifDYEvBQl7yD"/>Easy SLAM Instruction Video on ROS 2 Foxy</a></li>
-          <li>Since you might adjust setting of VESC pkg for vesc_odom, here's additonal resource <a href="https://f1tenth.readthedocs.io/en/foxy_test/getting_started/driving/drive_calib_odom.html#calibrating-the-steering-and-odometry"/>f1tenth calibrating VESC Odom</a></li>
-          <li>
+          <li><code>scan_correction.yaml</code> can define the lidar undesired range, and filter them out using <code>scan_correction</code> node</li>
+          <li>Follow this instuction if you <b>only want to do SLAM</b>, <a href="https://youtu.be/ZaiA3hWaRzE?si=heDZifDYEvBQl7yD"/>Easy SLAM Instruction Video on ROS 2 Foxy</a></li>
+          <li>Since you might adjust setting of VESC pkg for <b>vesc_odom</b>, here's additonal resource <a href="https://f1tenth.readthedocs.io/en/foxy_test/getting_started/driving/drive_calib_odom.html#calibrating-the-steering-and-odometry"/>f1tenth calibrating VESC Odom</a></li>
+          <li>Change odom direction by
+              <ul> 
+                  <li>
+                      adjust <code>vesc_to_odom.cpp</code> <code>line 100</code><br>
+                      <code>double current_speed = -1 * (-state->state.speed - speed_to_erpm_offset_) / speed_to_erpm_gain_;</code> (adding a negative sign)
+                  </li>
+                  <li>
+                      adjust <code>vesc_to_odom.cpp</code> <code>line 107</code>(if you invert steering_angle at joy_teleop.yaml)<br>
+                      <code>-1 * (last_servo_cmd_->data - steering_to_servo_offset_) / steering_to_servo_gain_;</code> (adding a negative sign)
+                  </li>
+              </ul>
+          </li>
       </ul>
   </li>
   <li> Setting up Seeed IMU, follow instructions 
@@ -277,12 +290,23 @@ ros2 launch ucsd_robocar_nav2_pkg all_nodes.launch.py
           <li><a href="https://wiki.seeedstudio.com/XIAO_BLE/"/>Seeed Seeed Studio XIAO nRF52840 Sense</a></li> 
           <li><a href="https://github.com/NikitaB04/razorIMU_9dof"/>razorIMU_9dof</a></li> 
       </ul>
+      In <code>src/winter-2024-final-project-team-7/team_7_external/config/</code>,you may adjust setting in <code>Seeed_imu.yaml</code> (<b>equivalent</b> for <code>razor.yaml</code> in razorIMU_9dof) and <code>Seeed_imu_config.yaml</code>.<br>
+      Then, 
+<pre>
+build_ros2
+ros2 launch team_7_external Seeed_imu.launch.py
+</pre>
   </li>
-  <li> Calibrate Your Robot
+  <li> DepthAI ROS & team_7_obstacle_detection Installation
     <ol>
-      <li>Toggle <i>camera_nav_calibration</i> to 1 and <i>camera_nav</i> to 0 within <i>node_config.yaml</i></li>
-      <li>Run <i>source_ros2</i>, <i>build_ros2</i>, and then <i>ros2 launch ucsd_robocar_nav2_pkg all_nodes.launch.py</i> </li>
-      <li>Adjust sliders within GUI to ensure gold mask is clear with <b>NO</b> noise </li>
+      <li>Install Depthai and related packages,<br><code>sudo apt install ros-foxy-depthai* ros-foxy-sensor-msgs-py</code></li>
+      <li>If you're using an OAK-D Lite,
+          <ul>
+              <li>adjust <code>camera.yaml</code>,<br><code>nano /opt/ros/foxy/share/depthai_ros_driver/config/camera.yaml</code><br>Disable imu and ir<br><img src="https://github.com/WinstonHChou/winter-2024-final-project-team-7/assets/68310078/aff6c5af-6798-4a3a-9db8-c4d04e6da298"></li>
+              <li>adjust <code>pcl.yaml</code>,<br><code>nano /opt/ros/foxy/share/depthai_ros_driver/config/pcl.yaml</code><br>Disable imu and ir, and comment out "oak:"<br><img src="https://github.com/WinstonHChou/winter-2024-final-project-team-7/assets/68310078/d4ec90b2-f20f-46f5-8474-c70a546a5cb5"></li>
+          </ul>
+      </li>                  
+      <li>Open an additional terminal, <br><code>ros2 launch depthai_ros_driver pointcloud.launch.py</code> to publish <code>/oak/points</code> ros 2 topic</li>
       <li>Toggle <i>camera_nav_calibration</i> to 0 and <i>camera_nav</i> to 1 within <i>node_config.yaml</i></li>
       <li>Update your PID and throttle values in <i>ros_racer_calibration.yaml</i></li>
     </ol>
