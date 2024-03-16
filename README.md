@@ -377,6 +377,9 @@ Thanks to Nikita on Triton AI providing support on razorIMU_9dof repo for IMU us
 * [razorIMU_9dof](https://github.com/NikitaB04/razorIMU_9dof)
 * [Foxglove Studio](https://app.foxglove.dev/)
 
+
+README.md Format, reference to [spring-2023-final-project-team-5](https://github.com/UCSD-ECEMAE-148/spring-2023-final-project-team-5)
+
 <hr>
 
 ## Contacts
