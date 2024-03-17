@@ -386,4 +386,4 @@ README.md Format, reference to [spring-2023-final-project-team-5](https://github
 
 * Winston Chou - w3chou@ucsd.edu | winston.ckhs@gmail.com | [LinkedIn](https://www.linkedin.com/in/winston-wei-han-chou-a02214249/)
 * Amir Riahi - amirriahi760@yahoo.com
-* Rayyan Khalid - 
+* Rayyan Khalid - rkhalid@ucsd.edu
