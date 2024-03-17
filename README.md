@@ -228,9 +228,10 @@ Our circuit assembly process was guided by a circuit diagram provided by our cla
 ## Course Deliverables
 Here are our autonomous laps as part of our class deliverables:
 
-* line following: https://photos.app.goo.gl/pQ7n9FB2srGJNkFz9 
-* lane following: https://photos.app.goo.gl/pQ7n9FB2srGJNkFz9 
-* GPS: https://youtu.be/92Q-JpYGPZk?si=UYrh6Mo9-b4TGgYO
+* DonkeyCar Reinforcement Laps: https://youtu.be/UEGGQz-GSq4
+* Line Following: https://youtu.be/GaKq_m8Ola0
+* Lane Following: https://youtu.be/1v2-Dgx5fyk
+* GPS Laps: https://youtu.be/92Q-JpYGPZk?si=UYrh6Mo9-b4TGgYO
 
 Team 7's the weekly project Status Update and Final Presentation:  
 * [Team 7 weekly status updates](https://docs.google.com/presentation/d/e/2PACX-1vSWm0AW0yZ6IKFCnXcJtbBB0NPDEejXtwTStLtW3yOxjlFvpV0wWUp3y91MQgVq3j63RR5WNTfaSFZW/pub?start=false&loop=false&delayms=3000)
